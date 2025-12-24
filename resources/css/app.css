@@ -1,0 +1,132 @@
+@import 'tailwindcss';
+
+
+/* Custom smooth scrolling enhancements */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced smooth scrolling for specific elements */
+.smooth-scroll {
+    scroll-behavior: smooth;
+    transition: all 0.3s ease;
+}
+
+/* Social sidebar animations */
+.social-sidebar {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Performance optimization for smooth scrolling */
+* {
+    scroll-margin-top: 80px;
+}
+
+/* Improve mobile touch scrolling */
+@media (max-width: 768px) {
+    body {
+        overscroll-behavior: contain;
+    }
+}
+
+/* Add subtle parallax effect to hero sections */
+.parallax-element {
+    will-change: transform;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* WhatsApp-specific animations */
+@keyframes whatsapp-bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    40% {
+        transform: translateY(-10px) scale(1.05);
+    }
+    60% {
+        transform: translateY(-5px) scale(1.02);
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.whatsapp-bounce:hover {
+    animation: whatsapp-bounce 0.6s ease-in-out;
+}
+
+/* WhatsApp pulse effect */
+.whatsapp-pulse::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    animation: pulse-ring 2s infinite;
+}
+
+/* Enhanced hover effects for WhatsApp button */
+.whatsapp-hover-enhanced {
+    position: relative;
+    overflow: visible;
+}
+
+.whatsapp-hover-enhanced::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #25D366, #128C7E, #075E54);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.whatsapp-hover-enhanced:hover::after {
+    opacity: 1;
+}
+
+/* Mobile optimization for WhatsApp button */
+@media (max-width: 768px) {
+    .whatsapp-mobile-bottom {
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
+
+/* WhatsApp ripple effect on click */
+@keyframes whatsapp-ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.whatsapp-ripple-effect:active::before {
+    content: '';
+    position: absolute;
+    inset: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: whatsapp-ripple 0.6s ease-out;
+}
