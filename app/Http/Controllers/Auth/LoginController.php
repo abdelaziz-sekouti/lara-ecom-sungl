@@ -31,6 +31,7 @@ class LoginController extends Controller
         if (Auth::user()->email === 'admin@sunlux.com') {
             return route('admin.dashboard');
         }
+
         return '/home';
     }
 

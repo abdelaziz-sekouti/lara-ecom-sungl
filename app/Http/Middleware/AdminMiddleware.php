@@ -11,7 +11,7 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->email === 'admin@sunlux.com') {
+        if (Auth::check() && (Auth::user()->email === 'admin@sunlux.com' || Auth::user()->is_admin)) {
             return $next($request);
         }
 

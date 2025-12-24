@@ -96,7 +96,7 @@
         </script>
         <!-- Scroll Progress Bar -->
         <div class="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
-            <div class="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-150 scroll-progress-fill"
+            <div class="h-full bg-linear-to-r from-blue-600 to-purple-600 transition-all duration-150 scroll-progress-fill"
                  style="width: 0%"></div>
         </div>
 

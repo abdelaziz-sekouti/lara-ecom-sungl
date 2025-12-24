@@ -35,4 +35,19 @@ class Sunglass extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function averageRating()
+    {
+        return $this->reviews()->approved()->avg('rating') ?? 0;
+    }
+
+    public function totalReviews()
+    {
+        return $this->reviews()->approved()->count();
+    }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('total_amount', 10, 2);
             $table->decimal('tax_amount', 8, 2)->default(0);
             $table->decimal('shipping_amount', 8, 2)->default(0);
-            $table->enum('status', ['pending', 'processing', 'shipped', 'delivered', 'cancelled'])->default('pending');
+            $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'cancelled'])->default('pending');
             $table->string('shipping_address');
             $table->string('billing_address')->nullable();
             $table->text('notes')->nullable();
