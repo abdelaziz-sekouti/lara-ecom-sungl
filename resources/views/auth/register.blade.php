@@ -1,22 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
         <!-- Header -->
         <div class="text-center">
             <h1 class="text-3xl font-bold text-gray-900 mb-2">
-                Welcome Back to SunLux
+                Join SunLux
             </h1>
             <p class="text-gray-600">
-                Sign in to access your account and explore our premium sunglasses collection
+                Create your account to explore our premium sunglasses collection
             </p>
         </div>
 
-        <!-- Login Form -->
+        <!-- Registration Form -->
         <div class="bg-white rounded-2xl shadow-xl p-8">
-            <form class="space-y-6" action="{{ route('login') }}" method="POST">
+            <form class="space-y-6" action="{{ route('register') }}" method="POST">
                 @csrf
+
+                <!-- Name Field -->
+                <div class="space-y-2">
+                    <label for="name" class="block text-sm font-medium text-gray-700">
+                        Full Name
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        </div>
+                        <input id="name" name="name" type="text" required
+                               value="{{ old('name') }}"
+                               class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Enter your full name"
+                               autocomplete="name">
+                    </div>
+                </div>
 
                 <!-- Email Field -->
                 <div class="space-y-2">
@@ -51,14 +70,15 @@
                         </div>
                         <input id="password" name="password" type="password" required
                                class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                               placeholder="Enter your password"
-                               autocomplete="current-password">
+                               placeholder="Create a password"
+                               autocomplete="new-password">
                     </div>
+                    <p class="text-xs text-gray-500">Must be at least 8 characters</p>
                 </div>
 
                  <!-- Confirm Password Field -->
                 <div class="space-y-2">
-                    <label for="confirm-password" class="block text-sm font-medium text-gray-700">
+                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
                         Confirm Password
                     </label>
                     <div class="relative">
@@ -67,14 +87,12 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10 10V7a4 4 0 00-8 0v4h8z"></path>
                             </svg>
                         </div>
-                        <input id="confirm-password" name="confirm-password" type="confirm-password" required
+                        <input id="password_confirmation" name="password_confirmation" type="password" required
                                class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                               placeholder="Retype your password"
-                               autocomplete="current-password">
+                               placeholder="Confirm your password"
+                               autocomplete="new-password">
                     </div>
                 </div>
-
-
 
                 <!-- Error Messages -->
                 @if ($errors->any())
@@ -101,32 +119,27 @@
                     </div>
                 @endif
 
-                <!-- Submit and Register Buttons -->
+                <!-- Submit Button -->
                 <div class="flex flex-col sm:flex-row gap-4 mt-6">
                     <button type="submit"
                             class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                             <svg class="h-5 w-5 text-blue-500 group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3m0 0l-3-3m3 3V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h8z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2h8z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0 0h3m-13 5h7a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                             </svg>
                         </span>
-                        Sign in to SunLux
+                        Create Account
                     </button>
-
-
                 </div>
 
-                <!-- Register Link -->
+                <!-- Login Link -->
                 <div class="flex flex-col sm:flex-row items-center justify-between mt-6 space-y-4 sm:space-y-0 sm:space-x-4">
                     <p class="text-sm text-gray-600">
-                       You already have an account?
+                        Already have an account?
                         <a href="{{ route('login') }}" class="font-medium text-blue-600 hover:text-blue-500">
-                            Login here
+                            Sign in here
                         </a>
                     </p>
-
-
                 </div>
             </form>
         </div>
@@ -157,7 +170,7 @@
             <div class="text-center p-4 bg-white rounded-lg shadow">
                 <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                     <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364 0L12 3.636l-7.682 7.682a4.5 4.5 0 00-6.364 0L12 20.364l-7.682-7.682a4.5 4.5 0 00-6.364 0L12 3.636l-7.682 7.682a4.5 4.5 0 00-6.364 0L12 20.364l-7.682-7.682a4.5 4.5 0 00-6.364 0L12 3.636l-7.682 7.682a4.5 4.5 0 00-6.364 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364 0L12 3.636l-7.682 7.682a4.5 4.5 0 00-6.364 0L12 20.364l-7.682-7.682a4.5 4.5 0 00-6.364 0L12 3.636l-7.682 7.682a4.5 4.5 0 00-6.364 0L12 20.364l-7.682-7.682a4.5 4.5 0 00-6.364 0z"></path>
                     </svg>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900">2-Year Warranty</h3>

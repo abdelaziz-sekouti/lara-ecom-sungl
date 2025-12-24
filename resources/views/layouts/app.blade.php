@@ -146,12 +146,9 @@
                                     @if(Auth::user()->email === 'admin@sunlux.com')
                                         <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🛠️ Admin Dashboard</a>
                                     @endif
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                    <form action="{{ route('logout') }}" method="POST" class="hidden" id="logout-form">
-                                        @csrf
-                                    </form>
-                                    <a href="#" onclick="document.getElementById('logout-form').submit()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                                    <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</a>
+                                    <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                    <a href="{{ route('logout.page') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
                                 </div>
                             </div>
                         @endguest

@@ -30,10 +30,6 @@ Route::get('/checkout', function () {
 
 Auth::routes();
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
 // Admin Routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -72,5 +68,16 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('/reviews/{review}/reject', [AdminController::class, 'rejectReview'])->name('reviews.reject');
     Route::delete('/reviews/{review}', [AdminController::class, 'destroyReview'])->name('reviews.destroy');
 });
+
+// Profile Routes
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+});
+
+Route::get('/logout', function () {
+    return view('auth.logout');
+})->middleware('auth')->name('logout.page');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
