@@ -178,8 +178,8 @@
                         <a href="{{ route('register') }}" class="block px-3 py-2 bg-blue-600 text-white rounded-md">Register</a>
                     @else
                         <a href="{{ route('orders.index') }}" class="block px-3 py-2 text-gray-700">Orders</a>
-                        <a href="#" class="block px-3 py-2 text-gray-700">Profile</a>
-                        <a href="#" onclick="document.getElementById('logout-form').submit()" class="block px-3 py-2 text-gray-700">Logout</a>
+                        <a href="{{ route('profile.show') }}" class="block px-3 py-2 text-gray-700">Profile</a>
+                        <a href="{{ route('logout.page') }}" class="block px-3 py-2 text-gray-700">Logout</a>
                     @endguest
                 </div>
             </div>
