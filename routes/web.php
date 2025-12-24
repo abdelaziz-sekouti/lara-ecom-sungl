@@ -29,4 +29,8 @@ Route::get('/checkout', function () {
 
 Auth::routes();
 
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

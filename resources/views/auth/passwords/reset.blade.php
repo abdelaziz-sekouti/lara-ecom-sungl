@@ -1,10 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+<div class="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <!-- Header -->
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                Welcome Back to SunLux
+            </h1>
+            <p class="text-gray-600">
+                Sign in to access your account and explore our premium sunglasses collection
+            </p>
+        </div>
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">

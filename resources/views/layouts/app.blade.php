@@ -21,7 +21,7 @@
     @vite('resources/js/app.js')
 
     <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!--<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>  -->
 </head>
 <body class="font-sans antialiased">
     <div id="app">
@@ -30,47 +30,34 @@
             document.addEventListener('DOMContentLoaded', function() {
                 let scrolled = false;
                 let scrollProgress = 0;
-                
-                // Scroll to top function
-                window.scrollToTop = function() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                };
-                
-                // Add to cart function
-                window.addToCart = function(productId) {
-                    console.log('Adding to cart:', productId);
-                    // Show notification
-                    const notification = document.createElement('div');
-                    notification.className = 'fixed top-20 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
-                    notification.textContent = '✅ Product added to cart!';
-                    document.body.appendChild(notification);
-                    
-                    // Remove notification after 3 seconds
-                    setTimeout(() => {
-                        notification.style.opacity = '0';
-                        setTimeout(() => notification.remove(), 300);
-                    }, 3000);
-                    
-                    // Here you would typically make an API call to add to cart
-                    // For demo, we'll just show the notification
-                };
-                
+
+                // Scroll to top button visibility management
+                function updateScrollToTopButton(show) {
+                    const scrollButton = document.getElementById('scroll-to-top');
+                    if (scrollButton) {
+                        if (show) {
+                            scrollButton.style.opacity = '1';
+                            scrollButton.style.transform = 'translateY(0)';
+                        } else {
+                            scrollButton.style.opacity = '0';
+                            scrollButton.style.transform = 'translateY(100px)';
+                        }
+                    }
+                }
+
                 window.addEventListener('scroll', function() {
                     const newScrolled = window.pageYOffset > 400;
                     const newScrollProgress = Math.min((window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100, 100);
-                    
+
                     if (newScrolled !== scrolled) {
                         scrolled = newScrolled;
                         // Toggle elements based on scroll
                         const elementsToShow = document.querySelectorAll('.show-on-scroll');
                         const elementsToHide = document.querySelectorAll('.hide-on-scroll');
-                        
+
                         elementsToShow.forEach(el => el.classList.remove('hidden'));
                         elementsToHide.forEach(el => el.classList.add('hidden'));
-                        
+
                         // Update navigation shadow
                         const nav = document.querySelector('nav');
                         if (nav) {
@@ -82,20 +69,11 @@
                                 nav.classList.remove('shadow-2xl');
                             }
                         }
-                        
-                        // Show/hide social sidebar
-                        const socialSidebar = document.getElementById('social-sidebar');
-                        if (socialSidebar) {
-                            if (scrolled) {
-                                socialSidebar.style.opacity = '1';
-                                socialSidebar.style.transform = 'translateX(0)';
-                            } else {
-                                socialSidebar.style.opacity = '0';
-                                socialSidebar.style.transform = 'translateX(-100%)';
-                            }
-                        }
+
+                        // Update scroll to top button visibility
+                        updateScrollToTopButton(newScrolled);
                     }
-                    
+
                     if (newScrollProgress !== scrollProgress) {
                         scrollProgress = newScrollProgress;
                         // Update progress bar
@@ -103,6 +81,15 @@
                         if (progressBar) {
                             progressBar.style.width = scrollProgress + '%';
                         }
+                    }
+                });
+
+                // Reset scroll to top button on page load (hidden)
+                window.addEventListener('load', function() {
+                    const scrollButton = document.getElementById('scroll-to-top-button');
+                    if (scrollButton) {
+                        scrollButton.style.opacity = '0';
+                        scrollButton.style.transform = 'translateY(100px)';
                     }
                 });
             });
@@ -146,6 +133,7 @@
 
                         @guest
                             <a href="{{ route('login') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
+                             <a href="{{ route('register') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Register</a>
                         @else
                             <div class="relative group">
                                 <button class="flex items-center text-gray-700 hover:text-blue-600 transition">
@@ -178,7 +166,7 @@
             </div>
 
             <!-- Mobile menu -->
-            <div class="md:hidden hidden" id="mobile-menu">
+            <div class="hidden md:hidden" id="mobile-menu">
                 <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
                     <a href="{{ route('home') }}" class="block px-3 py-2 text-gray-700 hover:text-blue-600 smooth-scroll">Home</a>
                     <a href="{{ route('shop') }}" class="block px-3 py-2 text-gray-700 hover:text-blue-600 smooth-scroll">Shop</a>
@@ -187,6 +175,7 @@
                     <a href="{{ route('contact') }}" class="block px-3 py-2 text-gray-700 hover:text-blue-600 smooth-scroll">Contact</a>
                     @guest
                         <a href="{{ route('login') }}" class="block px-3 py-2 bg-blue-600 text-white rounded-md">Login</a>
+                        <a href="{{ route('register') }}" class="block px-3 py-2 bg-blue-600 text-white rounded-md">Register</a>
                     @else
                         <a href="#" class="block px-3 py-2 text-gray-700">Orders</a>
                         <a href="#" class="block px-3 py-2 text-gray-700">Profile</a>
@@ -242,31 +231,31 @@
 
     <!-- Social Sidebar -->
     <div id="social-sidebar"
-         class="fixed left-0 top-1/2 transform -translate-y-1/2 z-50 hidden show-on-scroll"
-         style="margin-top: 0; opacity: 0; transform: translateX(-100%); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+         class="fixed left-0 top-1/2 transform  z-50 transition-all duration-500 ease-out"
+         style="margin-top: 0; opacity: 0; transform: translate(-100%, -50%);">
         <div class="bg-white rounded-r-lg shadow-2xl p-4 space-y-4">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-               class="block w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-300 hover:scale-110 transform">
+               class=" w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-300 hover:scale-110 transform">
                 <i class="fab fa-facebook-f"></i>
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
-               class="block w-12 h-12 bg-sky-500 text-white rounded-full flex items-center justify-center hover:bg-sky-600 transition-colors duration-300 hover:scale-110 transform">
+               class=" w-12 h-12 bg-sky-500 text-white rounded-full flex items-center justify-center hover:bg-sky-600 transition-colors duration-300 hover:scale-110 transform">
                 <i class="fab fa-twitter"></i>
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-               class="block w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 text-white rounded-full flex items-center justify-center hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-110 transform">
+               class=" w-12 h-12 bg-linear-to-br from-purple-600 to-pink-600 text-white rounded-full flex items-center justify-center hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-110 transform">
                 <i class="fab fa-instagram"></i>
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-               class="block w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center hover:bg-blue-800 transition-colors duration-300 hover:scale-110 transform">
+               class=" w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center hover:bg-blue-800 transition-colors duration-300 hover:scale-110 transform">
                 <i class="fab fa-linkedin-in"></i>
             </a>
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
-               class="block w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition-colors duration-300 hover:scale-110 transform">
+               class=" w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition-colors duration-300 hover:scale-110 transform">
                 <i class="fab fa-youtube"></i>
             </a>
             <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer"
-               class="block w-12 h-12 bg-red-700 text-white rounded-full flex items-center justify-center hover:bg-red-800 transition-colors duration-300 hover:scale-110 transform">
+               class=" w-12 h-12 bg-red-700 text-white rounded-full flex items-center justify-center hover:bg-red-800 transition-colors duration-300 hover:scale-110 transform">
                 <i class="fab fa-pinterest-p"></i>
             </a>
         </div>
@@ -274,14 +263,15 @@
 
     <!-- Scroll to Top Button -->
     <button onclick="scrollToTop()"
-            class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-110 z-40 flex items-center justify-center hide-on-scroll"
+            id="scroll-to-top"
+            class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-110 z-40 flex items-center justify-center"
             title="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- WhatsApp Chat Button -->
     <a href="https://wa.me/212612236660?text=Hello%20Sekouti%20Abdelaziz%2C%20I%20am%20interested%20in%20your%20sunglasses."
-       target="_blank" 
+       target="_blank"
        rel="noopener noreferrer"
        class="fixed bottom-8 left-16 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center group whatsapp-hover-enhanced whatsapp-bounce whatsapp-mobile-bottom whatsapp-ripple-effect show-on-scroll"
        title="Chat on WhatsApp"
@@ -297,7 +287,7 @@
 
     <!-- WhatsApp Chat Button (Scrolled State) -->
     <a href="https://wa.me/212612236660?text=Hello%20Sekouti%20Abdelaziz%2C%20I%20am%20interested%20in%20your%20sunglasses."
-       target="_blank" 
+       target="_blank"
        rel="noopener noreferrer"
        class="fixed bottom-24 right-8 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center group whatsapp-hover-enhanced whatsapp-bounce whatsapp-mobile-bottom whatsapp-ripple-effect show-on-scroll"
        title="Chat on WhatsApp"
@@ -316,6 +306,45 @@
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+        });
+
+        // Social sidebar scroll animation
+        let socialScrollTimeout;
+        let socialShown = false;
+
+        function showSocialSidebar() {
+            const sidebar = document.getElementById('social-sidebar');
+            if (!socialShown) {
+                socialShown = true;
+                sidebar.style.opacity = '1';
+                sidebar.style.transform = 'translate(0, -50%)';
+            }
+        }
+
+        function hideSocialSidebar() {
+            const sidebar = document.getElementById('social-sidebar');
+            if (socialShown) {
+                socialShown = false;
+                sidebar.style.opacity = '0';
+                sidebar.style.transform = 'translate(-100%, -50%)';
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            clearTimeout(socialScrollTimeout);
+
+            if (window.pageYOffset > 300) {
+                showSocialSidebar();
+            } else {
+                hideSocialSidebar();
+            }
+
+            // Optional: Hide sidebar when user stops scrolling for 3 seconds
+            socialScrollTimeout = setTimeout(() => {
+                if (window.pageYOffset > 300) {
+                    // Keep showing after scroll stops
+                }
+            }, 3000);
         });
     </script>
 </body>

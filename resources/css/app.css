@@ -8,6 +8,11 @@
 html {
     scroll-behavior: smooth;
 }
+#scroll-to-top {
+    transition: opacity 0.3s ease-in-out;
+    display:none;
+    z-index: 1000;
+}
 
 /* Enhanced smooth scrolling for specific elements */
 .smooth-scroll {

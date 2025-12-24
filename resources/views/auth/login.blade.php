@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
         <!-- Header -->
         <div class="text-center">
@@ -17,7 +17,7 @@
         <div class="bg-white rounded-2xl shadow-xl p-8">
             <form class="space-y-6" action="{{ route('login') }}" method="POST">
                 @csrf
-                
+
                 <!-- Email Field -->
                 <div class="space-y-2">
                     <label for="email" class="block text-sm font-medium text-gray-700">
@@ -80,7 +80,7 @@
                 @if ($errors->any())
                     <div class="rounded-md bg-red-50 p-4 mb-4">
                         <div class="flex">
-                            <div class="flex-shrink-0">
+                            <div class="shrink-0">
                                 <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 0116 0zm-1-9a1 1 0 00-1-1H2a1 1 0 00-1 1v12a1 1 0 001 1h16a1 1 0 001-1V8z" clip-rule="evenodd"></path>
                                 </svg>
@@ -101,18 +101,20 @@
                     </div>
                 @endif
 
-                <!-- Submit Button -->
-                <div>
+                <!-- Submit and Register Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 mt-6">
                     <button type="submit"
                             class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                             <svg class="h-5 w-5 text-blue-500 group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3m0 0l-3-3m3 3V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h8z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10 10V7a4 4 0 00-8 0v4h8z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2h8z"></path>
                             </svg>
                         </span>
                         Sign in to SunLux
                     </button>
+
+
                 </div>
 
                 <!-- Register Link -->
@@ -123,8 +125,8 @@
                             Sign up here
                         </a>
                     </p>
-                    
-                    <a href="{{ route('register') }}" 
+
+                    <a href="{{ route('register') }}"
                        class="w-full sm:w-auto flex justify-center items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0 0h-3m-3 0h3m-3 0v3m0 0h3M3 12h18M9 12v3m0 0v3m0 0H6m3 0v3m0 0H3m3 0v3m0 0H3"></path>
