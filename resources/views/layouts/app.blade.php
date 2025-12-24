@@ -131,9 +131,9 @@
                             <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
                         </a>
 
-                        @guest
-                            <a href="{{ route('login') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
-                             <a href="{{ route('register') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Register</a>
+                    @guest
+                        <a href="{{ route('login') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
+                        <a href="{{ route('register') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Register</a>
                         @else
                             <div class="relative group">
                                 <button class="flex items-center text-gray-700 hover:text-blue-600 transition">
@@ -146,7 +146,7 @@
                                     @if(Auth::user()->email === 'admin@sunlux.com')
                                         <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">🛠️ Admin Dashboard</a>
                                     @endif
-                                    <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</a>
+                                    <a href="{{ route('orders.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</a>
                                     <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
                                     <a href="{{ route('logout.page') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
                                 </div>
@@ -177,7 +177,7 @@
                         <a href="{{ route('login') }}" class="block px-3 py-2 bg-blue-600 text-white rounded-md">Login</a>
                         <a href="{{ route('register') }}" class="block px-3 py-2 bg-blue-600 text-white rounded-md">Register</a>
                     @else
-                        <a href="#" class="block px-3 py-2 text-gray-700">Orders</a>
+                        <a href="{{ route('orders.index') }}" class="block px-3 py-2 text-gray-700">Orders</a>
                         <a href="#" class="block px-3 py-2 text-gray-700">Profile</a>
                         <a href="#" onclick="document.getElementById('logout-form').submit()" class="block px-3 py-2 text-gray-700">Logout</a>
                     @endguest
