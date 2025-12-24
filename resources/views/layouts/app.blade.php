@@ -30,21 +30,72 @@
             document.addEventListener('DOMContentLoaded', function() {
                 let scrolled = false;
                 let scrollProgress = 0;
-
+                
+                // Scroll to top function
+                window.scrollToTop = function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                };
+                
+                // Add to cart function
+                window.addToCart = function(productId) {
+                    console.log('Adding to cart:', productId);
+                    // Show notification
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed top-20 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+                    notification.textContent = '✅ Product added to cart!';
+                    document.body.appendChild(notification);
+                    
+                    // Remove notification after 3 seconds
+                    setTimeout(() => {
+                        notification.style.opacity = '0';
+                        setTimeout(() => notification.remove(), 300);
+                    }, 3000);
+                    
+                    // Here you would typically make an API call to add to cart
+                    // For demo, we'll just show the notification
+                };
+                
                 window.addEventListener('scroll', function() {
-                    const newScrolled = window.pageYOffset > 200;
+                    const newScrolled = window.pageYOffset > 400;
                     const newScrollProgress = Math.min((window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100, 100);
-
+                    
                     if (newScrolled !== scrolled) {
                         scrolled = newScrolled;
                         // Toggle elements based on scroll
                         const elementsToShow = document.querySelectorAll('.show-on-scroll');
                         const elementsToHide = document.querySelectorAll('.hide-on-scroll');
-
+                        
                         elementsToShow.forEach(el => el.classList.remove('hidden'));
                         elementsToHide.forEach(el => el.classList.add('hidden'));
+                        
+                        // Update navigation shadow
+                        const nav = document.querySelector('nav');
+                        if (nav) {
+                            if (scrolled) {
+                                nav.classList.add('shadow-2xl');
+                                nav.classList.remove('shadow-lg');
+                            } else {
+                                nav.classList.add('shadow-lg');
+                                nav.classList.remove('shadow-2xl');
+                            }
+                        }
+                        
+                        // Show/hide social sidebar
+                        const socialSidebar = document.getElementById('social-sidebar');
+                        if (socialSidebar) {
+                            if (scrolled) {
+                                socialSidebar.style.opacity = '1';
+                                socialSidebar.style.transform = 'translateX(0)';
+                            } else {
+                                socialSidebar.style.opacity = '0';
+                                socialSidebar.style.transform = 'translateX(-100%)';
+                            }
+                        }
                     }
-
+                    
                     if (newScrollProgress !== scrollProgress) {
                         scrollProgress = newScrollProgress;
                         // Update progress bar
@@ -58,8 +109,8 @@
         </script>
         <!-- Scroll Progress Bar -->
         <div class="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
-            <div class="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-150"
-                 :style="`width: ${scrollProgress}%`"></div>
+            <div class="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-150 scroll-progress-fill"
+                 style="width: 0%"></div>
         </div>
 
         <!-- Navigation -->
@@ -78,16 +129,19 @@
                     <div class="hidden md:flex items-center space-x-8">
                         <a href="{{ route('home') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition smooth-scroll">Home</a>
                         <a href="{{ route('shop') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition smooth-scroll">Shop</a>
+                        <a href="{{ route('cart') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition smooth-scroll">Cart</a>
                         <a href="{{ route('about') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition smooth-scroll">About</a>
                         <a href="{{ route('contact') }}" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition smooth-scroll">Contact</a>
                     </div>
 
                     <!-- Cart and Auth -->
                     <div class="hidden md:flex items-center space-x-4">
-                        <a href="#" class="text-gray-700 hover:text-blue-600 transition">
+                        <a href="{{ route('cart') }}" class="text-gray-700 hover:text-blue-600 transition relative">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M7 13l4-4m0 6a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                             </svg>
+                            <!-- Cart Badge -->
+                            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
                         </a>
 
                         @guest
@@ -128,6 +182,7 @@
                 <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
                     <a href="{{ route('home') }}" class="block px-3 py-2 text-gray-700 hover:text-blue-600 smooth-scroll">Home</a>
                     <a href="{{ route('shop') }}" class="block px-3 py-2 text-gray-700 hover:text-blue-600 smooth-scroll">Shop</a>
+                    <a href="{{ route('cart') }}" class="block px-3 py-2 text-gray-700 hover:text-blue-600 smooth-scroll">Cart</a>
                     <a href="{{ route('about') }}" class="block px-3 py-2 text-gray-700 hover:text-blue-600 smooth-scroll">About</a>
                     <a href="{{ route('contact') }}" class="block px-3 py-2 text-gray-700 hover:text-blue-600 smooth-scroll">Contact</a>
                     @guest
@@ -141,8 +196,10 @@
             </div>
         </nav>
 
-        <main>
-            @yield('content')
+        <main class="min-h-screen">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                @yield('content')
+            </div>
         </main>
 
         <!-- Footer -->
@@ -184,15 +241,9 @@
     </div>
 
     <!-- Social Sidebar -->
-    <div x-show="scrolled"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 transform -translate-x-full"
-         x-transition:enter-end="opacity-100 transform translate-x-0"
-         x-transition:leave="transition ease-in duration-300"
-         x-transition:leave-start="opacity-100 transform translate-x-0"
-         x-transition:leave-end="opacity-0 transform -translate-x-full"
-         class="fixed left-0 top-1/2 transform -translate-y-1/2 z-50 hidden"
-         style="margin-top: 0;">
+    <div id="social-sidebar"
+         class="fixed left-0 top-1/2 transform -translate-y-1/2 z-50 hidden show-on-scroll"
+         style="margin-top: 0; opacity: 0; transform: translateX(-100%); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
         <div class="bg-white rounded-r-lg shadow-2xl p-4 space-y-4">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
                class="block w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-300 hover:scale-110 transform">
@@ -222,32 +273,19 @@
     </div>
 
     <!-- Scroll to Top Button -->
-    <button @click="window.scrollTo({top: 0, behavior: 'smooth'})"
-            x-show="scrolled"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 transform scale-75"
-            x-transition:enter-end="opacity-100 transform scale-100"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 transform scale-100"
-            x-transition:leave-end="opacity-0 transform scale-75"
-            class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-110 z-40 flex items-center justify-center"
+    <button onclick="scrollToTop()"
+            class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-110 z-40 flex items-center justify-center hide-on-scroll"
             title="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- WhatsApp Chat Button -->
     <a href="https://wa.me/212612236660?text=Hello%20Sekouti%20Abdelaziz%2C%20I%20am%20interested%20in%20your%20sunglasses."
-       target="_blank"
+       target="_blank" 
        rel="noopener noreferrer"
-       x-show="!scrolled"
-       x-transition:enter="transition ease-out duration-500"
-       x-transition:enter-start="opacity-0 transform scale-0 rotate-12"
-       x-transition:enter-end="opacity-100 transform scale-100 rotate-0"
-       x-transition:leave="transition ease-in duration-300"
-       x-transition:leave-start="opacity-100 transform scale-100 rotate-0"
-       x-transition:leave-end="opacity-0 transform scale-0 rotate-12"
-       class="fixed bottom-8 right-8 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center group whatsapp-hover-enhanced whatsapp-bounce whatsapp-mobile-bottom whatsapp-ripple-effect"
-       title="Chat on WhatsApp">
+       class="fixed bottom-8 left-16 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center group whatsapp-hover-enhanced whatsapp-bounce whatsapp-mobile-bottom whatsapp-ripple-effect show-on-scroll"
+       title="Chat on WhatsApp"
+       style="opacity: 1; transform: scale(1) rotate(0deg);">
         <i class="fab fa-whatsapp text-2xl"></i>
         <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
         <!-- Tooltip -->
@@ -259,17 +297,11 @@
 
     <!-- WhatsApp Chat Button (Scrolled State) -->
     <a href="https://wa.me/212612236660?text=Hello%20Sekouti%20Abdelaziz%2C%20I%20am%20interested%20in%20your%20sunglasses."
-       target="_blank"
+       target="_blank" 
        rel="noopener noreferrer"
-       x-show="scrolled"
-       x-transition:enter="transition ease-out duration-500"
-       x-transition:enter-start="opacity-0 transform scale-0 rotate-12"
-       x-transition:enter-end="opacity-100 transform scale-100 rotate-0"
-       x-transition:leave="transition ease-in duration-300"
-       x-transition:leave-start="opacity-100 transform scale-100 rotate-0"
-       x-transition:leave-end="opacity-0 transform scale-0 rotate-12"
-       class="fixed bottom-24 right-8 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center group whatsapp-hover-enhanced whatsapp-bounce whatsapp-mobile-bottom whatsapp-ripple-effect"
-       title="Chat on WhatsApp">
+       class="fixed bottom-24 right-8 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center group whatsapp-hover-enhanced whatsapp-bounce whatsapp-mobile-bottom whatsapp-ripple-effect show-on-scroll"
+       title="Chat on WhatsApp"
+       style="opacity: 0; transform: scale(0) rotate(12deg);">
         <i class="fab fa-whatsapp text-2xl"></i>
         <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
         <!-- Tooltip -->
