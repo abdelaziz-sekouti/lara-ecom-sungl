@@ -83,13 +83,13 @@
             <p class="text-sm opacity-90">View and update order status</p>
         </a>
 
-        <a href="{{ route('admin.products') }}" class="bg-purple-600 text-white rounded-lg p-6 hover:bg-purple-700 transition">
+        <a href="{{ route('admin.products.index') }}" class="bg-purple-600 text-white rounded-lg p-6 hover:bg-purple-700 transition">
             <i class="fas fa-box text-2xl mb-2"></i>
             <h3 class="font-semibold">Manage Products</h3>
             <p class="text-sm opacity-90">Add, edit, and remove products</p>
         </a>
 
-        <a href="{{ route('admin.categories') }}" class="bg-orange-600 text-white rounded-lg p-6 hover:bg-orange-700 transition">
+        <a href="{{ route('admin.categories.index') }}" class="bg-orange-600 text-white rounded-lg p-6 hover:bg-orange-700 transition">
             <i class="fas fa-tags text-2xl mb-2"></i>
             <h3 class="font-semibold">Manage Categories</h3>
             <p class="text-sm opacity-90">Organize product categories</p>

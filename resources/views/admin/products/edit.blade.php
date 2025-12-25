@@ -7,7 +7,7 @@
             <ol class="flex items-center space-x-4">
                 <li><a href="{{ route('admin.dashboard') }}" class="text-gray-500 hover:text-gray-700">Dashboard</a></li>
                 <li><span class="text-gray-400">/</span></li>
-                <li><a href="{{ route('admin.products') }}" class="text-gray-500 hover:text-gray-700">Products</a></li>
+                <li><a href="{{ route('admin.products.index') }}" class="text-gray-500 hover:text-gray-700">Products</a></li>
                 <li><span class="text-gray-400">/</span></li>
                 <li><span class="text-gray-900">Edit {{ $product->name }}</span></li>
             </ol>
@@ -149,7 +149,7 @@
             </div>
 
             <div class="mt-6 flex items-center justify-end space-x-4">
-                <a href="{{ route('admin.products') }}" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-400 transition">Cancel</a>
+                <a href="{{ route('admin.products.index') }}" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-400 transition">Cancel</a>
                 <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition">Update Product</button>
             </div>
         </form>

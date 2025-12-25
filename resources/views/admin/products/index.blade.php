@@ -5,7 +5,7 @@
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-gray-900">Manage Products</h1>
         <div class="flex items-center space-x-4">
-            <form action="{{ route('admin.products') }}" method="GET" class="flex items-center space-x-2">
+            <form action="{{ route('admin.products.index') }}" method="GET" class="flex items-center space-x-2">
                 <select name="category" onchange="this.form.submit()" class="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     <option value="">All Categories</option>
                     @foreach($categories as $category)

@@ -163,7 +163,7 @@ class AdminController extends Controller
 
         Sunglass::create($data);
 
-        return redirect()->route('admin.products')->with('success', 'Product created successfully');
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully');
     }
 
     public function editProduct(Sunglass $product)
@@ -198,18 +198,18 @@ class AdminController extends Controller
 
         $product->update($data);
 
-        return redirect()->route('admin.products')->with('success', 'Product updated successfully');
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully');
     }
 
     public function destroyProduct(Sunglass $product)
     {
         if ($product->orderItems()->exists()) {
-            return redirect()->route('admin.products')->with('error', 'Cannot delete product with existing orders');
+            return redirect()->route('admin.products.index')->with('error', 'Cannot delete product with existing orders');
         }
 
         $product->delete();
 
-        return redirect()->route('admin.products')->with('success', 'Product deleted successfully');
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully');
     }
 
     // Category Management
@@ -235,7 +235,7 @@ class AdminController extends Controller
 
         Category::create($request->all());
 
-        return redirect()->route('admin.categories')->with('success', 'Category created successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');
     }
 
     public function editCategory(Category $category)
@@ -253,18 +253,18 @@ class AdminController extends Controller
 
         $category->update($request->all());
 
-        return redirect()->route('admin.categories')->with('success', 'Category updated successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
     }
 
     public function destroyCategory(Category $category)
     {
         if ($category->sunglasses()->exists()) {
-            return redirect()->route('admin.categories')->with('error', 'Cannot delete category with existing products');
+            return redirect()->route('admin.categories.index')->with('error', 'Cannot delete category with existing products');
         }
 
         $category->delete();
 
-        return redirect()->route('admin.categories')->with('success', 'Category deleted successfully');
+        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
     }
 
     // Review Management

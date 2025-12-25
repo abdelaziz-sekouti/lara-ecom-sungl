@@ -89,6 +89,33 @@ This is a Laravel 12 e-commerce application for sunglasses with Filament admin p
 - **Service Providers**: Register in `config/app.php` if needed
 - **Publishing**: Use `php artisan vendor:publish` for package assets
 
+### Error Handling & Exceptions
+- **HTTP Responses**: Use appropriate status codes (200, 201, 400, 401, 403, 404, 422, 500)
+- **Validation Errors**: Return 422 with detailed error messages
+- **Exception Handling**: Create custom exception classes when needed
+- **Logging**: Use Laravel's Log facade with appropriate levels (debug, info, warning, error)
+- **API Errors**: Consistent JSON error format with `message` and optional `errors` fields
+
+### Type Safety & Documentation
+- **PHP 8.2+**: Use strict types declaration (`declare(strict_types=1)`)
+- **Return Types**: Always declare return types for methods
+- **Property Types**: Use typed properties for class members
+- **DocBlocks**: Use PHPDoc for complex logic, API endpoints, and public methods
+- **Enums**: Use PHP enums for fixed sets of values (status, types, etc.)
+
+### Performance & Optimization
+- **Eager Loading**: Use `with()` to prevent N+1 queries
+- **Query Optimization**: Use indexes, limit results, and avoid complex subqueries
+- **Caching**: Implement caching for expensive operations and frequently accessed data
+- **Asset Optimization**: Minify CSS/JS, use Vite's production builds
+- **Database**: Use proper indexing and optimize migrations
+
+### Authentication & Authorization
+- **Gates**: Define authorization gates in `AuthServiceProvider`
+- **Policies**: Create policy classes for model-specific permissions
+- **Middleware**: Use Laravel's auth middleware (`auth`, `guest`, `verified`)
+- **Role Management**: Implement role-based access control for admin features
+
 ## Common Patterns
 - **Form Requests**: Create dedicated request classes for validation
 - **Resource Controllers**: Follow RESTful conventions (index, create, store, show, edit, update, destroy)
@@ -96,3 +123,5 @@ This is a Laravel 12 e-commerce application for sunglasses with Filament admin p
 - **Blade Templates**: Use layouts and components for reusability
 - **Events & Listeners**: Use for decoupling application logic
 - **Jobs**: Use for background processing and queue operations
+- **Repositories**: Implement repository pattern for complex data access logic
+- **Services**: Create service classes for business logic separation

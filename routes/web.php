@@ -47,7 +47,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('/orders/{order}/status', [AdminController::class, 'updateOrderStatus'])->name('orders.update-status');
 
     // Product Management
-    Route::get('/products', [AdminController::class, 'products'])->name('products');
+    Route::get('/products', [AdminController::class, 'products'])->name('products.index');
     Route::get('/products/create', [AdminController::class, 'createProduct'])->name('products.create');
     Route::post('/products', [AdminController::class, 'storeProduct'])->name('products.store');
     Route::get('/products/{product}/edit', [AdminController::class, 'editProduct'])->name('products.edit');
@@ -55,7 +55,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::delete('/products/{product}', [AdminController::class, 'destroyProduct'])->name('products.destroy');
 
     // Category Management
-    Route::get('/categories', [AdminController::class, 'categories'])->name('categories');
+    Route::get('/categories', [AdminController::class, 'categories'])->name('categories.index');
     Route::get('/categories/create', [AdminController::class, 'createCategory'])->name('categories.create');
     Route::post('/categories', [AdminController::class, 'storeCategory'])->name('categories.store');
     Route::get('/categories/{category}/edit', [AdminController::class, 'editCategory'])->name('categories.edit');

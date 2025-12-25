@@ -92,7 +92,12 @@
                             <span class="text-2xl font-bold text-gray-900">$119</span>
                             <span class="text-sm text-gray-500 line-through ml-2">$149</span>
                         </div>
-                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110">
+                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110" 
+                                data-add-to-cart 
+                                data-product-id="1" 
+                                data-name="Classic Aviator" 
+                                data-price="119" 
+                                data-image="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M7 13l4-4m0 6a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                             </svg>
@@ -129,7 +134,12 @@
                         <div>
                             <span class="text-2xl font-bold text-gray-900">$189</span>
                         </div>
-                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110">
+                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110" 
+                                data-add-to-cart 
+                                data-product-id="2" 
+                                data-name="Sport Performance" 
+                                data-price="189" 
+                                data-image="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=400&h=300&fit=crop">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M7 13l4-4m0 6a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                             </svg>
@@ -166,7 +176,12 @@
                         <div>
                             <span class="text-2xl font-bold text-gray-900">$225</span>
                         </div>
-                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110">
+                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110" 
+                                data-add-to-cart 
+                                data-product-id="3" 
+                                data-name="Vintage Style" 
+                                data-price="225" 
+                                data-image="https://images.unsplash.com/photo-1572635196237-14b3f2815032?w=400&h=300&fit=crop">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M7 13l4-4m0 6a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                             </svg>
@@ -203,7 +218,12 @@
                         <div>
                             <span class="text-2xl font-bold text-gray-900">$149</span>
                         </div>
-                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110">
+                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110" 
+                                data-add-to-cart 
+                                data-product-id="4" 
+                                data-name="Wayfarer Classic" 
+                                data-price="149" 
+                                data-image="https://images.unsplash.com/photo-1517406928871-8f1699f43675?w=400&h=300&fit=crop">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M7 13l4-4m0 6a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                             </svg>
@@ -240,7 +260,12 @@
                         <div>
                             <span class="text-2xl font-bold text-gray-900">$329</span>
                         </div>
-                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110">
+                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110" 
+                                data-add-to-cart 
+                                data-product-id="5" 
+                                data-name="Luxury Cat-Eye" 
+                                data-price="329" 
+                                data-image="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M7 13l4-4m0 6a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                             </svg>
@@ -278,7 +303,12 @@
                             <span class="text-2xl font-bold text-gray-900">$389</span>
                             <span class="text-sm text-gray-500 line-through ml-2">$459</span>
                         </div>
-                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110">
+                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110" 
+                                data-add-to-cart 
+                                data-product-id="6" 
+                                data-name="Round Frame" 
+                                data-price="389" 
+                                data-image="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=400&h=300&fit=crop">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M7 13l4-4m0 6a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                             </svg>
@@ -315,7 +345,12 @@
                         <div>
                             <span class="text-2xl font-bold text-gray-900">$275</span>
                         </div>
-                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110">
+                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110" 
+                                data-add-to-cart 
+                                data-product-id="7" 
+                                data-name="Modern Square" 
+                                data-price="275" 
+                                data-image="https://images.unsplash.com/photo-1572635196237-14b3f2815032?w=400&h=300&fit=crop">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M7 13l4-4m0 6a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                             </svg>
@@ -352,7 +387,12 @@
                         <div>
                             <span class="text-2xl font-bold text-gray-900">$159</span>
                         </div>
-                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110">
+                        <button class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition transform hover:scale-110" 
+                                data-add-to-cart 
+                                data-product-id="8" 
+                                data-name="Retro Inspired" 
+                                data-price="159" 
+                                data-image="https://images.unsplash.com/photo-1517406928871-8f1699f43675?w=400&h=300&fit=crop">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M7 13l4-4m0 6a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                             </svg>
@@ -419,4 +459,5 @@
         </div>
     </div>
 </section>
+<script src="{{ asset('js/cart.js') }}"></script>
 @endsection

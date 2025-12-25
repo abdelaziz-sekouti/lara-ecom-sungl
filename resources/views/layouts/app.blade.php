@@ -273,7 +273,7 @@
     <a href="https://wa.me/212612236660?text=Hello%20Sekouti%20Abdelaziz%2C%20I%20am%20interested%20in%20your%20sunglasses."
        target="_blank"
        rel="noopener noreferrer"
-       class="fixed bottom-8 left-16 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center group whatsapp-hover-enhanced whatsapp-bounce whatsapp-mobile-bottom whatsapp-ripple-effect show-on-scroll"
+       class="fixed bottom-12 left-60 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center group whatsapp-hover-enhanced whatsapp-bounce whatsapp-mobile-bottom whatsapp-ripple-effect show-on-scroll"
        title="Chat on WhatsApp"
        style="opacity: 1; transform: scale(1) rotate(0deg);">
         <i class="fab fa-whatsapp text-2xl"></i>
@@ -289,7 +289,7 @@
     <a href="https://wa.me/212612236660?text=Hello%20Sekouti%20Abdelaziz%2C%20I%20am%20interested%20in%20your%20sunglasses."
        target="_blank"
        rel="noopener noreferrer"
-       class="fixed bottom-24 right-8 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center group whatsapp-hover-enhanced whatsapp-bounce whatsapp-mobile-bottom whatsapp-ripple-effect show-on-scroll"
+       class="fixed bottom-24 left-8 w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center group whatsapp-hover-enhanced whatsapp-bounce whatsapp-mobile-bottom whatsapp-ripple-effect show-on-scroll"
        title="Chat on WhatsApp"
        style="opacity: 0; transform: scale(0) rotate(12deg);">
         <i class="fab fa-whatsapp text-2xl"></i>
