@@ -170,57 +170,31 @@
                     </h2>
                     
                     <!-- Order Items -->
-                    <div class="space-y-4 mb-6">
-                        <!-- Order Item 1 -->
-                        <div class="flex items-center space-x-4 pb-4 border-b border-gray-200">
-                            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                                 alt="Classic Aviator" 
-                                 class="w-16 h-16 object-cover rounded">
-                            <div class="flex-1">
-                                <div class="flex justify-between">
-                                    <h3 class="text-sm font-medium text-gray-900">Classic Aviator</h3>
-                                    <p class="text-sm text-gray-500">x1</p>
-                                </div>
-                                <p class="text-sm text-gray-600">$129.00</p>
-                            </div>
-                        </div>
-
-                        <!-- Order Item 2 -->
-                        <div class="flex items-center space-x-4 pb-4 border-b border-gray-200">
-                            <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                                 alt="Sport Pro" 
-                                 class="w-16 h-16 object-cover rounded">
-                            <div class="flex-1">
-                                <div class="flex justify-between">
-                                    <h3 class="text-sm font-medium text-gray-900">Sport Pro</h3>
-                                    <p class="text-sm text-gray-500">x1</p>
-                                </div>
-                                <p class="text-sm text-gray-600">$189.00</p>
-                            </div>
-                        </div>
+                    <div id="checkout-items" class="space-y-4 mb-6">
+                        <!-- Cart items will be displayed here -->
                     </div>
 
                     <!-- Price Summary -->
                     <div class="space-y-3">
                         <div class="flex justify-between text-base">
                             <p class="text-gray-600">Subtotal</p>
-                            <p class="font-medium text-gray-900">$318.00</p>
+                            <p class="font-medium text-gray-900" id="checkout-subtotal">$0.00</p>
                         </div>
                         
                         <div class="flex justify-between text-base">
                             <p class="text-gray-600">Shipping</p>
-                            <p class="font-medium text-green-600">Free</p>
+                            <p class="font-medium text-gray-900" id="checkout-shipping">$0.00</p>
                         </div>
                         
                         <div class="flex justify-between text-base">
                             <p class="text-gray-600">Tax</p>
-                            <p class="font-medium text-gray-900">$31.80</p>
+                            <p class="font-medium text-gray-900" id="checkout-tax">$0.00</p>
                         </div>
                         
                         <div class="border-t border-gray-200 pt-3">
                             <div class="flex justify-between">
                                 <p class="text-lg font-semibold text-gray-900">Total</p>
-                                <p class="text-lg font-bold text-gray-900">$349.80</p>
+                                <p class="text-lg font-bold text-gray-900" id="checkout-total">$0.00</p>
                             </div>
                         </div>
                     </div>
@@ -247,4 +221,95 @@
         </form>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Update checkout order summary with real cart data
+    function updateCheckoutSummary() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const checkoutItems = document.getElementById('checkout-items');
+        const subtotalElement = document.getElementById('checkout-subtotal');
+        const shippingElement = document.getElementById('checkout-shipping');
+        const taxElement = document.getElementById('checkout-tax');
+        const totalElement = document.getElementById('checkout-total');
+        
+        if (cart.length === 0) {
+            checkoutItems.innerHTML = '<p class="text-gray-500">No items in cart</p>';
+            subtotalElement.textContent = '$0.00';
+            shippingElement.textContent = '$0.00';
+            taxElement.textContent = '$0.00';
+            totalElement.textContent = '$0.00';
+            return;
+        }
+        
+        let itemsHTML = '';
+        let subtotal = 0;
+        
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+            
+            itemsHTML += `
+                <div class="flex items-center space-x-4 pb-4 border-b border-gray-200">
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <h3 class="text-sm font-medium text-gray-900">${item.name}</h3>
+                            <p class="text-sm text-gray-500">x${item.quantity}</p>
+                        </div>
+                        <p class="text-sm text-gray-600">$${itemTotal.toFixed(2)}</p>
+                    </div>
+                </div>
+            `;
+        });
+        
+        checkoutItems.innerHTML = itemsHTML;
+        
+        const shipping = subtotal > 0 ? 10 : 0;
+        const tax = subtotal * 0.08;
+        const total = subtotal + shipping + tax;
+        
+        subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+        shippingElement.textContent = `$${shipping.toFixed(2)}`;
+        taxElement.textContent = `$${tax.toFixed(2)}`;
+        totalElement.textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Handle form submission
+    const checkoutForm = document.querySelector('form');
+    checkoutForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const paymentMethod = formData.get('payment_method');
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+        
+        // Here you would normally send the order to your server
+        // For this demo, we'll just show a success message and clear the cart
+        alert('Order placed successfully! You will be redirected to the order confirmation page.');
+        
+        // Clear cart
+        localStorage.removeItem('cart');
+        window.updateCartCount();
+        
+        // Redirect to home page
+        window.location.href = '/';
+    });
+
+    // Initialize summary
+    updateCheckoutSummary();
+    
+    // Update summary when cart changes
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'cart') {
+            updateCheckoutSummary();
+        }
+    });
+});
+</script>
 @endsection

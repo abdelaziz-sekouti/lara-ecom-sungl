@@ -39,6 +39,11 @@ function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
+    
+    // Update cart display if on cart page
+    if (typeof window.updateCartDisplay === 'function') {
+        window.updateCartDisplay();
+    }
 }
 
 // Update cart item quantity
@@ -48,6 +53,11 @@ function updateQuantity(productId, change) {
         item.quantity = Math.max(1, item.quantity + change);
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
+        
+        // Update cart display if on cart page
+        if (typeof window.updateCartDisplay === 'function') {
+            window.updateCartDisplay();
+        }
     }
 }
 
@@ -89,6 +99,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const image = this.dataset.image;
             
             addToCart(productId, name, price, image);
+            
+            // Update cart display if on cart page
+            if (typeof window.updateCartDisplay === 'function') {
+                window.updateCartDisplay();
+            }
+            
+            // Update checkout summary if on checkout page
+            if (typeof updateCheckoutSummary === 'function') {
+                updateCheckoutSummary();
+            }
         });
     });
 });
@@ -130,13 +150,13 @@ function updateCartDisplay() {
                         <p class="text-sm text-gray-500">$${item.price}</p>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <button onclick="cartFunctions.updateQuantity('${item.id}', -1)" class="p-1 bg-gray-100 rounded hover:bg-gray-200">-</button>
+                        <button onclick="window.updateQuantity('${item.id}', -1)" class="p-1 bg-gray-100 rounded hover:bg-gray-200">-</button>
                         <span class="w-8 text-center">${item.quantity}</span>
-                        <button onclick="cartFunctions.updateQuantity('${item.id}', 1)" class="p-1 bg-gray-100 rounded hover:bg-gray-200">+</button>
+                        <button onclick="window.updateQuantity('${item.id}', 1)" class="p-1 bg-gray-100 rounded hover:bg-gray-200">+</button>
                     </div>
                     <div class="text-right">
                         <p class="font-medium text-gray-900">$${itemTotal.toFixed(2)}</p>
-                        <button onclick="cartFunctions.removeFromCart('${item.id}')" class="text-red-600 hover:text-red-800 text-sm">Remove</button>
+                        <button onclick="window.removeFromCart('${item.id}')" class="text-red-600 hover:text-red-800 text-sm">Remove</button>
                     </div>
                 </div>
             `;
@@ -158,6 +178,7 @@ function updateCartDisplay() {
 }
 
 // Export functions for use in cart page
+window.updateCartCount = updateCartCount;
 window.updateCartDisplay = updateCartDisplay;
 window.cartFunctions = {
     addToCart,

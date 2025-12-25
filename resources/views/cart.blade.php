@@ -69,9 +69,9 @@
                     
                     <!-- Checkout Button -->
                     <div class="px-6 py-4 border-t border-gray-200">
-                        <button id="checkout-button" class="w-full bg-blue-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <a href="{{ route('checkout') }}" id="checkout-button" class="block w-full bg-blue-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-center">
                             Proceed to Checkout
-                        </button>
+                        </a>
                         
                         <div class="mt-4 text-center">
                             <a href="{{ route('shop') }}" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
